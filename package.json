@@ -1,0 +1,23 @@
+{
+  "name": "chess-app",
+  "version": "1.0.0",
+  "description": "Chess application consisting of board and pieces",
+  "main": "app.js",
+  "scripts": {
+    "test": "babel-node ./spec/run.js"
+  },
+  "keywords": [
+    "chess",
+    "board",
+    "pieces"
+  ],
+  "author": "Howard Chen",
+  "license": "ISC",
+  "devDependencies": {
+    "jasmine": "^2.8.0"
+  },
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-es2015": "^6.24.1"
+  }
+}
