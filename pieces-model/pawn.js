@@ -3,7 +3,7 @@
  * Description: Child of the Piece class. Implements pawn behaviors.
  *      Overrides find_moves 
  * Created on 12-18-2017
- * Last edited on 12-18-2017
+ * Last edited on 12-19-2017
  *
  * A pawn is actually a special case because it does not capture the way it moves, and
  * because it can queen. But a pawn should not know whether nearby squares are occupied.
