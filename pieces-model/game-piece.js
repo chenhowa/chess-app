@@ -9,7 +9,7 @@
 import { Pawn } from "./pawn";
 import { Piece } from "./piece";
 import { Square } from "../board-model/square";
-import * as PieceCodes from "./piece-codes";
+import { PieceCodes } from "./piece-codes";
 
 
 //FIX!!! Add piece codes file for more flexibility and clearer semantics
@@ -39,6 +39,10 @@ class GamePiece {
     get rank () { return this._piece.rank }
     get file () { return this._piece.file }
     get isBlack() { return this._piece.isBlack }
+
+    static buildPawn(id, isBlack) {
+        return new GamePiece(PieceCodes.PAWN, id, isBlack);
+    }
 
 }
 

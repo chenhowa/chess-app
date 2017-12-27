@@ -7,7 +7,9 @@
  *
  */
 
-import { BoardSquare } from "./board-square.js";
+import { BoardSquare } from "./board-square";
+import { Square } from "./square";
+import { OccupyCodes } from "./occupy-codes";
 
 var createCoord = function( rank, file ) {
     return String.fromCharCode( file + 0x41 ).toLowerCase() + (rank + 1).toString();
@@ -41,6 +43,15 @@ class Board {
     clear (square) {
         this._squares[square.rank][square.file].occ = 0;
         this._squares[square.rank][square.file].piece_id = -1;
+    }
+    clearBoard() {
+        for( let i = 0; i < this._ranks; i++) {
+            for( let j =0; j < this._files; j++ ) {
+                var sq = new Square(i, j);
+                this.clear(sq);
+            }
+        }
+
     }
     isOccupied(square) {
         return this._squares[square.rank][square.file].occ !== 0;
