@@ -28,7 +28,7 @@ class Game {
     }        
         get board () { return this._board }
         get pieces () { return this._pieces }
-        get isBlackmove () { return this._isBlackMove }
+        get isBlackMove () { return this._isBlackMove }
         get captured () { return this._captured }
 
         // This function iterates through the piece array and ensures
@@ -46,40 +46,19 @@ class Game {
 
                 this._board.occupy(piece.square, occ_code, piece.id);
             }
-            /*
-            this._pieces.forEach(function(piece) {
-                var occ_code;
-                if(piece.isBlack) {
-                    occ_code = OccupyCodes.BLACK
-                }
-                else {
-                    occ_code = OccupyCodes.WHITE
-                }
-                this._board.occupy(piece.square, occ_code, piece.id); 
-
-            });
-            ***************/
         }
 
 
     //Makes game with standard board size and pieces
     static defaultGame() {
-        var pieces = new Array();
-
-        var board = new Board(8, 8);
-        var game = new Game(pieces, board); 
     }
 
     static testGame() {
-        var pieces = new Array();
-        for( let i = 0; i < 16; i++ ) {
-            var id = i;
-            var isBlack = (i % 2) == 0;
-            var piece = GamePiece.buildPawn(id, isBlack);
-        }
+        var pieces = GamePiece.testPieceSet()
         var board = new Board(8, 8);
-
         var game = new Game(pieces, board);
+
+        return game;
     }
 
     

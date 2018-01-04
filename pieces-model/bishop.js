@@ -22,14 +22,13 @@ class Bishop extends Piece {
         var rank = this._square.rank
         var file = this._square.file
 
-        var r_count = 0
+        var r_count = 1
 
         // check the two squares on the rank above the bishop. If that is still on the board,
-        // it is a move. Simultaneously check the rank below the bishop.
+        // it is a move. Simultaneously check the two squares on the rank below the bishop.
         // If that is still on the board, it is a move. Then increment the rank
         // counter.
-        while( (rank + r_count) < ranks || (rank - r_count) > 0 ) {
-            r_count++;
+        while( (rank + r_count) < ranks || (rank - r_count) >= 0 ) {
 
             //create the array of squares to consider
             var possible = new Array();
@@ -45,13 +44,15 @@ class Bishop extends Piece {
                 if( respects_upper && respects_lower ) {
                     squares.push( sq );
                 }
-            } ));
+            } );
+
+            r_count++;
         }
 
         return squares;
 
     }
 
-
-
 }
+
+export { Bishop } 
