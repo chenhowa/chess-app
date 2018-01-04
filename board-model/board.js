@@ -27,7 +27,7 @@ class Board {
             var row = [];
             for( let j = 0; j < this._files; j++) {
                 var coord = createCoord(i, j);
-                var sq = new BoardSquare(0, -1, coord);
+                var sq = new BoardSquare(OccupyCodes.NONE, -1, coord);
                 row.push(sq);
             }
 
@@ -41,7 +41,7 @@ class Board {
         this._squares[square.rank][square.file].piece_id = piece_id;
     }
     clear (square) {
-        this._squares[square.rank][square.file].occ = 0;
+        this._squares[square.rank][square.file].occ = OccupyCodes.NONE;
         this._squares[square.rank][square.file].piece_id = -1;
     }
     clearBoard() {
@@ -54,13 +54,13 @@ class Board {
 
     }
     isOccupied(square) {
-        return this._squares[square.rank][square.file].occ !== 0;
+        return this._squares[square.rank][square.file].occ !== OccupyCodes.NONE;
     }
     isOccupiedWhite(square) {
-        return this._squares[square.rank][square.file].occ === 1;
+        return this._squares[square.rank][square.file].occ === OccupyCodes.WHITE;
     }
     isOccupiedBlack(square) {
-        return this._squares[square.rank][square.file].occ === 2;
+        return this._squares[square.rank][square.file].occ === OccupyCodes.BLACK;
     }
     which_piece(square) {
         return this._squares[square.rank][square.file].piece_id;

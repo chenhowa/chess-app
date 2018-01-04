@@ -3,7 +3,7 @@
 import { Game } from "../game-model/game";
 import { GamePiece } from "../pieces-model/game-piece";
 import { Board } from "../board-model/board";
-import * as PieceCodes from "../pieces-model/piece-codes";
+import { PieceCodes } from "../pieces-model/piece-codes";
 
 describe( "Game", function() {
     var g;
@@ -18,7 +18,7 @@ describe( "Game", function() {
 
         for( let i = 0; i < 5; i++) {
             var isBlack = (i % 2 === 0) ? true : false;
-            pcs.push( new GamePiece( PieceCodes.PAWN_CODE(), isBlack) );
+            pcs.push( new GamePiece( PieceCodes.PAWN, isBlack) );
         }
 
         //put pieces on starting squares

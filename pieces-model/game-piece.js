@@ -15,7 +15,7 @@ import { PieceCodes } from "./piece-codes";
 //FIX!!! Add piece codes file for more flexibility and clearer semantics
 var build_piece = function(piece_type, isBlack) {
     var sq = new Square(-1, -1);
-    if( piece_type == PieceCodes.PAWN_CODE() ) {
+    if( piece_type === PieceCodes.PAWN ) {
        return new Pawn(sq, isBlack);
     } else {
         //perhaps this should be overriden to throw. A generic piece is meaningless

@@ -18,7 +18,7 @@ class Pawn extends Piece {
     constructor (square, bool_color) {
         super( square, bool_color )
     }
-    find_moves () {
+    find_moves (ranks, files) {
         var moves = new Array()
         moves.push( new Square(this._square.rank + 1, this._square.file) )
         if( this._square.rank === 2 ) {

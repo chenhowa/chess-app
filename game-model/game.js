@@ -35,17 +35,30 @@ class Game {
         // that the board has the same piece arrangement.
         syncBoardToPieces () {
             this._board.clearBoard();
+            for( let i = 0; i < this._pieces.length; i++) {
+                var occ_code;
+                var piece = this._pieces[i];
+                if(piece.isBlack) {
+                    occ_code = OccupyCodes.BLACK
+                } else {
+                    occ_code = OccupyCodes.WHITE
+                }
+
+                this._board.occupy(piece.square, occ_code, piece.id);
+            }
+            /*
             this._pieces.forEach(function(piece) {
                 var occ_code;
                 if(piece.isBlack) {
-                    occ_code = OccupyCodes.black
+                    occ_code = OccupyCodes.BLACK
                 }
                 else {
-                    occ_code = OccupyCodes.white
+                    occ_code = OccupyCodes.WHITE
                 }
-                board.occupy(piece.square, occ_code, piece.id); 
+                this._board.occupy(piece.square, occ_code, piece.id); 
 
             });
+            ***************/
         }
 
 
@@ -59,7 +72,7 @@ class Game {
 
     static testGame() {
         var pieces = new Array();
-        for( let i = 0; i < 16, i++ ) {
+        for( let i = 0; i < 16; i++ ) {
             var id = i;
             var isBlack = (i % 2) == 0;
             var piece = GamePiece.buildPawn(id, isBlack);

@@ -17,7 +17,7 @@ class Piece {
     move ( new_square ) {
         this._square = new_square;
     }
-    find_moves () {
+    find_moves (ranks, files) {
         //This needs to be overridden in inheriting classes. Each
         //child class should calculate its own set of possible moves.
         return new Array()

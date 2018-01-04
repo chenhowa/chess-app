@@ -1,5 +1,6 @@
 import { Board, createCoord } from "../board-model/board";
 import { Square } from "../board-model/square";
+import { OccupyCodes } from "../board-model/occupy-codes";
 
 describe ( "Board", function() {
     
@@ -39,21 +40,21 @@ describe ( "Board", function() {
     it( "basic occupation is detected", function () {
         var sq = new Square(0, 0);
         
-        b.occupy(sq, 1, -1);
+        b.occupy(sq, OccupyCodes.WHITE, -1);
         expect(b.isOccupied(sq)).toBeTruthy();
 
-        b.occupy(sq, 0, -1);
+        b.occupy(sq, OccupyCodes.NONE, -1);
         expect(b.isOccupied(sq)).toBeFalsy();
 
-        b.occupy(sq, 2, -1);
+        b.occupy(sq, OccupyCodes.BLACK, -1);
         expect(b.isOccupied(sq)).toBeTruthy();
 
         for (let i = 0; i < b.ranks; i++) {
             for(let j = 0; j < b.files; j++) {
                 var sq = new Square(i, j);
-                b.occupy(sq, 1, -1);
+                b.occupy(sq, OccupyCodes.WHITE, -1);
                 expect(b.isOccupied(sq) ).toBeTruthy();
-                b.occupy(sq, 2, -1);
+                b.occupy(sq, OccupyCodes.BLACK, -1);
                 expect(b.isOccupied(sq) ).toBeTruthy();
             }
         }
@@ -63,11 +64,11 @@ describe ( "Board", function() {
         var wsq = new Square(1, 1);
         var bsq = new Square(2, 2);
 
-        b.occupy(wsq, 1, -1);
+        b.occupy(wsq, OccupyCodes.WHITE, -1);
         expect(b.isOccupiedWhite(wsq)).toBeTruthy();
         expect(b.isOccupiedBlack(wsq)).toBeFalsy();
 
-        b.occupy(bsq, 2, -1);
+        b.occupy(bsq, OccupyCodes.BLACK, -1);
         expect(b.isOccupiedWhite(bsq)).toBeFalsy();
         expect(b.isOccupiedBlack(bsq)).toBeTruthy();
         
@@ -77,8 +78,28 @@ describe ( "Board", function() {
         for (let i = 0; i < b.ranks; i++) {
             for(let j = 0; j < b.files; j++) {
                 var sq = new Square(i, j);
-                b.occupy(sq, 1, -1);
+                b.occupy(sq, OccupyCodes.WHITE, -1);
                 b.clear(sq);
+                expect(b.isOccupied(sq)).toBeFalsy();
+                expect(b.isOccupiedWhite(sq)).toBeFalsy();
+                expect(b.isOccupiedBlack(sq)).toBeFalsy();
+            }
+        }
+
+    });
+
+    it( "whole board clearance is detected", function() {
+        for (let i = 0; i < b.ranks; i++) {
+            for(let j = 0; j < b.files; j++) {
+                var sq = new Square(i, j);
+                b.occupy(sq, OccupyCodes.WHITE, -1);
+            }
+        }
+
+        b.clearBoard();
+        for(let i = 0; i < b.ranks; i++) {
+            for(let j = 0; j < b.files; j++) {
+                var sq = new Square(i, j);
                 expect(b.isOccupied(sq)).toBeFalsy();
                 expect(b.isOccupiedWhite(sq)).toBeFalsy();
                 expect(b.isOccupiedBlack(sq)).toBeFalsy();
@@ -92,7 +113,7 @@ describe ( "Board", function() {
             for(let j = 0; j < b.files; j++) {
                 var sq = new Square(i, j)
                 var id = i * j;
-                b.occupy(sq, 0, id);
+                b.occupy(sq, OccupyCodes.NONE, id);
                 expect(b.which_piece(sq) ).toEqual(id);
             }
         }
